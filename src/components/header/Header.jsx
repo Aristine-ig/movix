@@ -52,7 +52,7 @@ const Header = () => {
     };
 
     const openSearch = () => {
-        setMobileMenu(true);
+        setMobileMenu(false);
         setShowSearch(true);
     };
 
