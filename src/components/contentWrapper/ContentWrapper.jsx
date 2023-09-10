@@ -7,5 +7,3 @@ const ContentWrapper = ({ children }) => {
 };
 
 export default ContentWrapper;
-
-
