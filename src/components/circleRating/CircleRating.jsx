@@ -21,4 +21,3 @@ const CircleRating = ({ rating }) => {
 };
 
 export default CircleRating;
-
