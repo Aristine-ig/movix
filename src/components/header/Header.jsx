@@ -24,49 +24,44 @@ const Header = () => {
 
     const controlNavbar = () => {
         if (window.scrollY > 200) {
-            if (window.scrollY > lastScrollY && !mobileMenu) 
-            {
+            if (window.scrollY > lastScrollY && !mobileMenu) {
                 setShow("hide");
             } else {
                 setShow("show");
             }
         } else {
-            setShow("top");       
+            setShow("top");
         }
         setLastScrollY(window.scrollY);
     };
 
-    useEffect (() => {
+    useEffect(() => {
         window.addEventListener("scroll", controlNavbar);
-        return ()=> {
+        return () => {
             window.removeEventListener("scroll", controlNavbar);
         };
     }, [lastScrollY]);
 
-    
-    const searchQueryHandler =  (event) => {
-        if(event.key === "Enter" && query.length > 0) {
+    const searchQueryHandler = (event) => {
+        if (event.key === "Enter" && query.length > 0) {
             navigate(`/search/${query}`);
-            setTimeout (() => {
+            setTimeout(() => {
                 setShowSearch(false);
             }, 1000);
         }
     };
 
-
     const openSearch = () => {
         setMobileMenu(false);
         setShowSearch(true);
-
     };
 
     const openMobileMenu = () => {
         setMobileMenu(true);
         setShowSearch(false);
-
     };
 
-    const navigatorHandler = (type) => {
+    const navigationHandler = (type) => {
         if (type === "movie") {
             navigate("/explore/movie");
         } else {
@@ -76,15 +71,24 @@ const Header = () => {
     };
 
     return (
-        <header className={`header ${mobileMenu ? "mobileView": ""} ${show}`}>
+        <header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
             <ContentWrapper>
-                <div className="logo" onClick={() =>navigate("/")}>
-                {/* <div className="logo" onClick={navigate("/")}> */}
+                <div className="logo" onClick={() => navigate("/")}>
                     <img src={logo} alt="" />
                 </div>
                 <ul className="menuItems">
-                    <li className="menuItem" onClick={() => navigatorHandler("movie")}>Movies</li>
-                    <li className="menuItem" onClick={() => navigatorHandler("tv")}>TV Shows</li>
+                    <li
+                        className="menuItem"
+                        onClick={() => navigationHandler("movie")}
+                    >
+                        Movies
+                    </li>
+                    <li
+                        className="menuItem"
+                        onClick={() => navigationHandler("tv")}
+                    >
+                        TV Shows
+                    </li>
                     <li className="menuItem">
                         <HiOutlineSearch onClick={openSearch} />
                     </li>
@@ -93,31 +97,29 @@ const Header = () => {
                 <div className="mobileMenuItems">
                     <HiOutlineSearch onClick={openSearch} />
                     {mobileMenu ? (
-                        <VscChromeClose onClick={() => 
-                        setMobileMenu(false)} />
+                        <VscChromeClose onClick={() => setMobileMenu(false)} />
                     ) : (
                         <SlMenu onClick={openMobileMenu} />
                     )}
                 </div>
-            </ContentWrapper>    
-            { showSearch && (
+            </ContentWrapper>
+            {showSearch && (
                 <div className="searchBar">
                     <ContentWrapper>
                         <div className="searchInput">
-                            <input 
-                                type="text" 
-                                placeholder="Search for a movie or tv show..." 
-                                onChange={(e)=> setQuery(e.target.value)} 
-                                onKeyUp={searchQueryHandler} 
+                            <input
+                                type="text"
+                                placeholder="Search for a movie or tv show...."
+                                onChange={(e) => setQuery(e.target.value)}
+                                onKeyUp={searchQueryHandler}
                             />
-                            <VscChromeClose 
-                                onClick={() => setShowSearch
-                                (false)} 
+                            <VscChromeClose
+                                onClick={() => setShowSearch(false)}
                             />
                         </div>
                     </ContentWrapper>
                 </div>
-            )}              
+            )}
         </header>
     );
 };
