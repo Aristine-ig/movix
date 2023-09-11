@@ -15,6 +15,7 @@ import Img from "../../../components/lazyLoadImage/Img.jsx";
 import PosterFallback from "../../../assets/no-poster.png";
 import { PlayIcon } from "../Playbtn";
 import VideoPopup from "../../../components/videoPopup/VideoPopup";
+import Download from "../Download";
 
 
 
@@ -98,6 +99,13 @@ const DetailsBanner = ({ video, crew }) => {
                                                     Watch 
                                                 </span>
                                             </div>
+
+                                            <div className="download">
+                                                <div className="heading">
+                                                    Download
+                                                </div>
+                                            </div>
+                                            
                                         </div>
 
                                         <div className="overview">

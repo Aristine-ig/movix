@@ -52,6 +52,8 @@ const HeroBanner = () => {
                             onKeyUp={searchQueryHandler}
                         />
                         <button>Search</button>
+                        {/* <button onClick={fetchDataFromApi}>Search</button> */}
+                        {/* <button onClick={"/search/:query"}>Search</button> */}
                     </div>
                 </div>
             </ContentWrapper>
